@@ -2,15 +2,26 @@
 -e .
 
 # external requirements
+click
+coverage
+flake8
+python-dotenv>=0.5.1
 pandas==1.1.4
 nltk==3.4.4
+google-cloud-bigquery==1.27.2
+google-cloud-storage==1.31.0
+google-cloud-vision==2.0.0
+google-cloud-datastore==1.15.0
 google-cloud-translate==2.0.1
 google-auth==1.21.2
 scikit-learn==0.23.2
 gcsfs==0.7.1
 grpcio==1.37.0
 fsspec==0.8.5
+spacy==3.0.1
 tqdm==4.56.0
 beautifulsoup4==4.8.2
+joblib == 0.14.1
+spacy-lookups-data == 1.0.0
 pyinstrument == 3.4.2
 translate
