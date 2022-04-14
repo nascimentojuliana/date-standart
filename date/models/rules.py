@@ -65,7 +65,7 @@ class Rules:
         try:
             translator= Translator(from_lang='pt', to_lang="en")
             y = 'hoje é dia ' + date 
-            y = translator.translate('hoje é dia 20 de janeiro de 2020')
+            y = translator.translate(y)
             y = y.replace('today is ', '')
             y = y.replace(",", "").replace(".", "")
             x = datetime.strptime(y, '%B %d %Y').strftime('%Y-%m-%d')
@@ -77,6 +77,7 @@ class Rules:
     def compound_extended_date(self, date):
         # buscar padrões como 02,03, 04 de janeiro de 2020 ou 02,03,04 de janeiro/20
         x = re.sub('[^a-zA-Z0-9]', ' ', date)
+        
         try:
             
             dicionario = {
@@ -106,7 +107,7 @@ class Rules:
                     ano = result.group()
                     ano = self.limpa_arquivo(ano).replace(" ", "")
                     x = x.split()
-                    regex = re.compile(r'\d{2}|\d{1}')
+                    regex = re.compile(r'^\d{2}$|^\d{1}$')
                     vetor_datas = []
                     for y in x:
                         result = regex.search(y)
@@ -388,6 +389,7 @@ class Rules:
             list_complete_dates = ([utils.lista_simples(date)
                         for date in datas if len(date) > 0
                         and date[0] not in ys])
+
             list_complete_dates = utils.lista_simples(list_complete_dates)
 
             list_final_dates = self.datas_imcompletas(
