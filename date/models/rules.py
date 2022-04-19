@@ -1,7 +1,7 @@
 import os
 import re
 import nltk
-nltk.download('all')
+#nltk.download('all')
 import unicodedata
 import pandas as pd
 from statistics import mode
@@ -58,7 +58,12 @@ class Rules:
                     x = 'False'
             else:
                 x = 'False'
-        return x
+
+        if x:
+            return x
+        else:
+            x = 'False'
+            return x
 
     def long_date(self, date):
         
@@ -72,7 +77,12 @@ class Rules:
             x = str(x)
         except BaseException:
             x = 'False'
-        return x
+
+        if x:
+            return x
+        else:
+            x = 'False'
+            return x
 
     def compound_extended_date(self, date):
         # buscar padrões como 02,03, 04 de janeiro de 2020 ou 02,03,04 de janeiro/20
@@ -101,7 +111,7 @@ class Rules:
             if result:
                 mes = result.group()
                 mes = dicionario[mes[0:3]]
-                regex = re.compile(r'20\ \d{2}$|2\.0\d{2}$|20\d{2}$')
+                regex = re.compile(r'20\ \d{2}$|2\.0\d{2}$|20\d{2}$|\d{4}$')
                 result = regex.search(x)
                 if result:
                     ano = result.group()
@@ -123,7 +133,11 @@ class Rules:
         except BaseException:
             x = 'False'
 
-        return x
+        if x:
+            return x
+        else:
+            x = 'False'
+            return x
 
     def compound_default_date(self, date):
         x = re.sub('[^a-zA-Z0-9-./ ]', ' ', date)
@@ -167,7 +181,7 @@ class Rules:
                 x = vetor_datas
 
             else:
-                regex = re.compile(r'20\ \d{2}$|20\d{2}$')
+                regex = re.compile(r'20\ \d{2}$|20\d{2}$|\d{4}')
                 result = regex.search(x)
                 if result:
                     ano = result.group()
@@ -196,7 +210,11 @@ class Rules:
         except BaseException:
             x = 'False'
 
-        return x
+        if x:
+            return x
+        else:
+            x = 'False'
+            return x
 
     def datas_imcompletas(self, list_incomplete_dates, list_complete_dates):
 
@@ -379,6 +397,7 @@ class Rules:
                     y = self.long_date(date)
                     if y == 'False':
                         y = [date, y]
+
 
         datas.append(y)
 

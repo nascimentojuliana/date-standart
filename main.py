@@ -7,7 +7,7 @@ from date.online.predict import predict
 
 st.image('image.jpg')
 
-original_title = '<p style="font-family:Courier; color:Black; font-size: 30px;">*STANDART DATE*</p>'
+original_title = '<p style="font-family:Courier; color:Black; font-size: 30px;">*Standard Date*</p>'
 st.markdown(original_title, unsafe_allow_html=True)   
 
 date = st.text_input('Input date')
