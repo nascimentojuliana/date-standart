@@ -1,7 +1,7 @@
 import os
 import re
 import nltk
-#nltk.download('all')
+nltk.download('all')
 import unicodedata
 import pandas as pd
 from statistics import mode
